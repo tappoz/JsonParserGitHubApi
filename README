@@ -1,0 +1,48 @@
+This project aims at showing how to retrieve a remote JSON file 
+and processing it from the command line in a Java program.
+
+As an example the GitHub API is used to retrieve a JSON file with a list of repositories 
+associated to a username e.g.:
+https://api.github.com/users/CHOSEN_USERNAME/repos
+where CHOSEN_USERNAME is passed through the command line.
+
+The source code is written using:
+
+- some basic Java OO principles like POJOs, services, and throwing exceptions (from the standard library), 
+- string constants from a centralized repository (if there's a potential purpose of reusing them),
+- some basic design patterns like the factory pattern, the helper pattern, 
+- the Gson external library (from Google) providing the rules to handle Json data structures,
+- a context class to support the class containing the main method 
+  providing the environment concerned with the web service.
+
+
+The source code is organized as:
+
+- packages related to the Json data structure definition (org.tappoz.json.pojo) 
+  and the Json retrieval (org.tappoz.json.services),
+- a package related to the services used by the main method (org.tappoz.services),
+- a package for the object factories,
+- a package for the helpers,
+- a package for the "static data",
+- a package containing the class with the main method and the class with the context,
+- packages with services and POJOs to help the class containing the main method,
+- a package in the "test" folder containing some Unit Tests.
+
+
+This project as a whole might be too verbose and over-engineerd, 
+however the purpose of this project is to show off the knowledge of enterprise best practices
+e.g. factories, helpers, dependency injection etc.
+
+To compile and run this project from the command line follow these steps:
+
+JsonParserGitHubApi $ ant -f build.xml
+JsonParserGitHubApi $ cd release
+JsonParserGitHubApi/release $ java -jar githubapiparser.jar tappoz fewd random_word
+
+
+At the moment I am writing this README file:
+
+- tappoz (my personal GitHub account) will give all the repos related to this username;
+- fews is a valid user name with no repos, then it will be detected with an apporpriate message;
+- random_word is not a valid user name, then it will be detected with an apporpriate message.
+
